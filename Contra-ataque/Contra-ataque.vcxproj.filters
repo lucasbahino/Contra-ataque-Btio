@@ -23,5 +23,8 @@
     <ClInclude Include="comandos.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="jogadores.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

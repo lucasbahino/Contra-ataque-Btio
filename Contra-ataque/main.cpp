@@ -1,5 +1,6 @@
 #include <iostream>
 #include "comandos.h"
+#include "jogadores.h"
 
 int main() {
     int choice;
