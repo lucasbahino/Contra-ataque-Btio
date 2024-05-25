@@ -2,10 +2,10 @@
 *.d
 
 # Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+.slo
+.lo
+.o
+.obj
 
 # Precompiled Headers
 *.gch
@@ -27,16 +27,16 @@
 *.lib
 
 # Executables
-*.exe
+.exe
 *.out
 *.app
 
 #Visual Studio
-*.vsidx
-*.opendb
+.vsidx
+.opendb
 .vs
-*.db
-*.db-shm
-*.db-wal
-*.VC
-*.pdb
+.db
+.db-shm
+.db-wal
+.VC
+.pdb
