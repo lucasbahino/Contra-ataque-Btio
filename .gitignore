@@ -35,3 +35,5 @@
 *.vsidx
 *.opendb
 *.vs
+*.db
+*.db-shm
