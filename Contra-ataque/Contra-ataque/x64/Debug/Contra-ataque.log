@@ -1,3 +1,33 @@
 ﻿  main.cpp
-C:\Users\55419\Documents\Games\Contra-ataque-Btio\Contra-ataque\main.cpp(54,13): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  Contra-ataque.vcxproj -> C:\Users\55419\Documents\Games\Contra-ataque-Btio\Contra-ataque\x64\Debug\Contra-ataque.exe
+C:\Users\55419\Documents\Games\Contra-ataque-Btio\Contra-ataque\pontuacao.h(21,16): warning C4477: 'fprintf' : format string '%s' requires an argument of type 'char *', but variadic argument 1 has type 'int'
+  (compiling source file 'main.cpp')
+  
+C:\Users\55419\Documents\Games\Contra-ataque-Btio\Contra-ataque\pontuacao.h(21,16): warning C4313: 'fprintf': '%s' in format string conflicts with argument 1 of type 'int'
+  (compiling source file 'main.cpp')
+  
+C:\Users\55419\Documents\Games\Contra-ataque-Btio\Contra-ataque\pontuacao.h(16,15): error C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  (compiling source file 'main.cpp')
+  
+C:\Users\55419\Documents\Games\Contra-ataque-Btio\Contra-ataque\pontuacao.h(42,22): warning C4477: 'fscanf' : format string '%s' requires an argument of type 'char *', but variadic argument 1 has type 'int'
+  (compiling source file 'main.cpp')
+  
+C:\Users\55419\Documents\Games\Contra-ataque-Btio\Contra-ataque\pontuacao.h(52,10): warning C4477: 'printf' : format string '%s' requires an argument of type 'char *', but variadic argument 1 has type 'int'
+  (compiling source file 'main.cpp')
+  
+C:\Users\55419\Documents\Games\Contra-ataque-Btio\Contra-ataque\pontuacao.h(52,10): warning C4313: 'printf': '%s' in format string conflicts with argument 1 of type 'int'
+  (compiling source file 'main.cpp')
+  
+C:\Users\55419\Documents\Games\Contra-ataque-Btio\Contra-ataque\pontuacao.h(33,15): error C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  (compiling source file 'main.cpp')
+  
+C:\Users\55419\Documents\Games\Contra-ataque-Btio\Contra-ataque\pontuacao.h(42,9): error C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  (compiling source file 'main.cpp')
+  
+C:\Users\55419\Documents\Games\Contra-ataque-Btio\Contra-ataque\jogadores.h(109,22): error C2440: 'initializing': cannot convert from 'std::string' to 'char'
+  (compiling source file 'main.cpp')
+  C:\Users\55419\Documents\Games\Contra-ataque-Btio\Contra-ataque\jogadores.h(109,22):
+  No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+  
+C:\Users\55419\Documents\Games\Contra-ataque-Btio\Contra-ataque\jogadores.h(121,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  (compiling source file 'main.cpp')
+  
