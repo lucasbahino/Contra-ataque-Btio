@@ -2,57 +2,68 @@
 #define PONTUACAO_H
 
 #include "comandos.h"
-#include <stdio.h>
+#include <fstream>
 #include <string>
-#include <stdlib.h>
+#include <vector>
+#include <algorithm>
 
-typedef struct Leaderboard
-{
-	char nome;
+using namespace std;
+
+struct Leaderboard {
+	string nome = "";
 	int pontos = 0;
-}Leaderboard;
+};
 
-void salvarDados(Leaderboard* lb) {
-	FILE* file = fopen("Leaderboard.txt", "a");
-	if (file == NULL) {
-		printf("Não foi possível abrir o arquivo.\n");
+void salvarDados(string nome, int pontos) {
+	Leaderboard lb;
+	lb.nome = nome;
+	lb.pontos = pontos;
+
+	ofstream file("Leaderboard.txt", std::ios::app);
+	if (file.is_open()) {
+		cout << "Leaderboard carregada.\n";
+		esperar(2);
+	}
+	else {
+		cout << "Erro ao abrir Leaderboard.\n";
+		esperar(2);
 		return;
 	}
-	fprintf(file, "Nome: %s, Pontos: %d\n", lb->nome, lb->pontos);
-	fclose(file); // Fecha o arquivo
+
+	file << "Nome: " << lb.nome << ", Pontos: " << lb.pontos << "\n";
+	file.close();
 }
 
-int comparar(const void* a, const void* b) {
-	Leaderboard* lbA = (Leaderboard*)a;
-	Leaderboard* lbB = (Leaderboard*)b;
-	return lbB->pontos - lbA->pontos;
+bool comparar(const Leaderboard& a, const Leaderboard& b) {
+	return b.pontos < a.pontos;
 }
 
 void showPontuacao() {
 	clearScreen();
-	FILE* file = fopen("Leaderboard.txt", "r");
-	if (file == NULL) {
-		printf("Não foi possível abrir o arquivo.\n");
+	ifstream file("Leaderboard.txt");
+	if (file.is_open()) {
+		cout << "Leaderboard carregada.\n";
+		esperar(2);
+	}
+	else {
+		cout << "Erro ao abrir Leaderboard.\n";
+		esperar(2);
 		return;
 	}
 
-	// Carrega os dados do arquivo em um array
-	Leaderboard lb[100]; // Supondo que haja no máximo 100 entradas
-	int i = 0;
-	while (fscanf(file, "Nome: %s, Pontos: %d\n", lb[i].nome, &lb[i].pontos) != EOF) {
-		i++;
-	}
-	int n = i;
-
-	// Classifica o array com base na pontuação
-	qsort(lb, n, sizeof(Leaderboard), comparar);
-
-	// Exibe os dados
-	for (i = 0; i < n; i++) {
-		printf("Nome: %s, Pontos: %d\n", lb[i].nome, lb[i].pontos);
+	vector<Leaderboard> lb;
+	Leaderboard temp;
+	while (file >> temp.nome >> temp.pontos) {
+		lb.push_back(temp);
 	}
 
-	fclose(file);
+	sort(lb.begin(), lb.end(), comparar);
+
+	for (const auto& l : lb) {
+		cout << "Nome: " << l.nome << ", Pontos: " << l.pontos << endl;
+	}
+	esperar(2);
+	file.close();
 }
 
 #endif // PONTUACAO_H

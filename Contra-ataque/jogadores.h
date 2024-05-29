@@ -106,8 +106,8 @@ void mostrarResultado(const Player* jogador, const Player* computador) {
 		clearScreen();
 		cout << "Digite seu Nome.";
 		cin >> nome;
-		Leaderboard lb = { nome, pontos };
-		salvarDados(&lb);
+
+		salvarDados(nome, pontos);
 	}
 	cout << "Pressione Enter para voltar ao menu.";
 	cin.ignore();
@@ -116,7 +116,7 @@ void mostrarResultado(const Player* jogador, const Player* computador) {
 
 void runGame() {
 
-	Player jogador = { 3, 0 };
+	Player jogador = { 3, 20 };
 	Player computador = { 3, 0 };
 	srand(time(0));
 	turnos = 0;
