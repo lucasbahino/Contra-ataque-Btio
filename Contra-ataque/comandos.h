@@ -19,10 +19,21 @@ void showMenu() {
 	cout << "        Jogo de Gestos      " << endl;
 	cout << "----------------------------" << endl;
 	cout << "1. Entrar no jogo" << endl;
-	cout << "2. Sobre o jogo" << endl;
-	cout << "3. Leaderboard" << endl;
+	cout << "2. Escolher dificuldade" << endl;
+	cout << "3. Sobre o jogo" << endl;
 	cout << "4. Sair" << endl;
 }
+
+void showDifficultyMenu() {
+	clearScreen();
+	cout << "----------------------------" << endl;
+	cout << "       Escolha Dificuldade   " << endl;
+	cout << "----------------------------" << endl;
+	cout << "1. Facil" << endl;
+	cout << "2. Medio" << endl;
+	cout << "3. Dificil" << endl;
+}
+
 
 void showInstructions() {
 	clearScreen();

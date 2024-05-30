@@ -1,3 +1,3 @@
 ﻿  main.cpp
-C:\Users\ribal\OneDrive\Documentos\GitHub\Contra-ataque-Btio\Contra-ataque\jogadores.h(108,15): warning C4244: 'argumento': conversão de 'time_t' para 'unsigned int', possível perda de dados
+C:\Users\ribal\OneDrive\Documentos\GitHub\Contra-ataque-Btio\Contra-ataque\jogadores.h(162,12): warning C4244: 'argumento': conversão de 'time_t' para 'unsigned int', possível perda de dados
   Contra-ataque.vcxproj -> C:\Users\ribal\OneDrive\Documentos\GitHub\Contra-ataque-Btio\Contra-ataque\x64\Debug\Contra-ataque.exe

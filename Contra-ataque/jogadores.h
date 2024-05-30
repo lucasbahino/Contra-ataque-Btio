@@ -12,6 +12,13 @@ using namespace std;
 enum Gesture { DEFESA, CARREGAR, ATIRAR };
 int turnos = 0;
 
+enum Difficulty {
+	FACIL,
+	MEDIO,
+	DIFICIL
+};
+
+
 struct Player {
 	int vidas;
 	int municao;
@@ -29,14 +36,42 @@ Gesture escolherGestoJogador(const Player* player) {
 	return static_cast<Gesture>(escolha);
 }
 
-Gesture escolherGestoComputador(const Player* computer) {
-	if (computer->municao > 0) {
-		return static_cast<Gesture>(rand() % 3);
+Gesture escolherGestoComputador(const Player* computer, Difficulty difficulty) {
+	int choice;
+	switch (difficulty) {
+	case FACIL:
+		if (computer->municao > 0) {
+			choice = rand() % 3; // Random choice among DEFESA, CARREGAR, ATIRAR
+		}
+		else {
+			choice = rand() % 2; // Random choice among DEFESA, CARREGAR
+		}
+		break;
+	case MEDIO:
+		if (computer->municao > 0) {
+			choice = rand() % 3;
+		}
+		else {
+			choice = rand() % 2;
+		}
+		break;
+	case DIFICIL:
+		if (computer->municao > 0) {
+			if (computer->vidas < 2) {
+				choice = ATIRAR; // Aggressive if low on lives
+			}
+			else {
+				choice = rand() % 3;
+			}
+		}
+		else {
+			choice = CARREGAR; // Prefer loading if no ammo
+		}
+		break;
 	}
-	else {
-		return static_cast<Gesture>(rand() % 2); // Apenas DEFESA ou CARREGAR
-	}
+	return static_cast<Gesture>(choice);
 }
+
 
 void mostrarStatus(const Player* jogador, const Player* computador) {
 	cout << "Vidas do Jogador: " << jogador->vidas << " | Municao: " << jogador->municao << endl;
@@ -114,19 +149,23 @@ void mostrarResultado(const Player* jogador, const Player* computador) {
 	cin.get();
 }
 
-void runGame() {
+void runGame(Difficulty dificuldade) {
+	int jogadorVidasIniciais = 3;
+	int jogadorBalasIniciais = 0;
 
-	Player jogador = { 3, 20 };
-	Player computador = { 3, 0 };
+	int computadorVidasIniciais = 3 + dificuldade;
+	int computadorBalasIniciais = 0 + dificuldade / 2;
+
+	Player jogador = { jogadorVidasIniciais, jogadorBalasIniciais };
+	Player computador = { computadorVidasIniciais, computadorBalasIniciais };
+
 	srand(time(0));
-	turnos = 0;
 
 	Player* pJogador = &jogador;
 	Player* pComputador = &computador;
 
 	string input;
 	while (pJogador->vidas > 0 && pComputador->vidas > 0) {
-		turnos++;
 		clearScreen();
 		mostrarStatus(pJogador, pComputador);
 
@@ -171,7 +210,7 @@ void runGame() {
 			}
 
 			Gesture playerGesto = static_cast<Gesture>(escolha);
-			Gesture computerGesto = escolherGestoComputador(pComputador);
+			Gesture computerGesto = escolherGestoComputador(pComputador, dificuldade);
 
 			clearScreen();
 			cout << "Voce escolheu: " << gestureToString(playerGesto) << endl;
@@ -185,5 +224,7 @@ void runGame() {
 
 	mostrarResultado(pJogador, pComputador);
 }
+
+
 
 #endif // JOGADORES_H
