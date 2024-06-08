@@ -4,8 +4,8 @@
 #include <stdio.h>
 #include <windows.h>
 #include <fstream>
-#include <vector>
-#include <algorithm>
+#include <stdlib.h>
+#include <string.h>
 
 using namespace std;
 
@@ -52,44 +52,6 @@ void showInstructions() {
     getchar(); 
     getchar(); 
 
-}
-
-void showScores() {
-    clearScreen();
-    printf("----------------------------\n");
-    printf("        Pontuacoes          \n");
-    printf("----------------------------\n");
-
-    ifstream file("Leaderboard.txt");
-    if (!file) {
-        printf("Erro ao abrir o arquivo de pontuacoes.\n");
-        return;
-    }
-
-    vector<pair<string, int>> scores;
-    string line;
-
-    while (getline(file, line)) {
-        size_t namePos = line.find("Nome: ");
-        size_t pointsPos = line.find(", Pontos: ");
-        if (namePos != string::npos && pointsPos != string::npos) {
-            string name = line.substr(namePos + 6, pointsPos - (namePos + 6));
-            int points = stoi(line.substr(pointsPos + 9));
-            scores.push_back(make_pair(name, points));
-        }
-    }
-
-    sort(scores.begin(), scores.end(), [](const pair<string, int>& a, const pair<string, int>& b) {
-        return b.second < a.second; // Ordenar do maior para o menor
-    });
-
-    for (const auto& score : scores) {
-        printf("Nome: %s, Pontos: %d\n", score.first.c_str(), score.second);
-    }
-
-    printf("Pressione Enter para voltar ao menu.\n");
-    getchar();
-    getchar(); 
 }
 
 #endif // COMANDOS_H

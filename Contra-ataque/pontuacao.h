@@ -3,25 +3,21 @@
 
 #include "comandos.h"
 #include <stdio.h>
-#include <fstream>
-#include <string>
-#include <vector>
-#include <algorithm>
+#include <stdlib.h>
+#include <string.h>
 
-using namespace std;
+typedef struct {
+    char nome[50];
+    int pontos;
+} Leaderboard;
 
-struct Leaderboard {
-	string nome = "";
-	int pontos = 0;
-};
-
-void salvarDados(string nome, int pontos) {
+void salvarDados(char* nome, int pontos) {
 	Leaderboard lb;
-	lb.nome = nome;
+	strcpy(lb.nome, nome);
 	lb.pontos = pontos;
 
-	ofstream file("Leaderboard.txt", std::ios::app);
-	if (file.is_open()) {
+	FILE* file = fopen("Leaderboard.txt", "a");
+	if (file != NULL) {
 		printf("Leaderboard carregada.\n");
 		esperar(2);
 	}
@@ -31,12 +27,56 @@ void salvarDados(string nome, int pontos) {
 		return;
 	}
 
-	file << "\n" <<"Nome: " << lb.nome << ", Pontos: " << lb.pontos;
-	file.close();
+	fprintf(file, "\nNome: %s, Pontos: %d", lb.nome, lb.pontos);
+	fclose(file);
 }
 
-bool comparar(const Leaderboard& a, const Leaderboard& b) {
-	return b.pontos < a.pontos;
+int compareScores(const void* a, const void* b) {
+    Leaderboard* lbA = (Leaderboard*) a;
+    Leaderboard* lbB = (Leaderboard*) b;
+    return lbB->pontos - lbA->pontos; // Ordenar do maior para o menor
+}
+
+void showScores() {
+    system("cls");
+    printf("----------------------------\n");
+    printf("        Pontuacoes          \n");
+    printf("----------------------------\n");
+
+    FILE* file = fopen("Leaderboard.txt", "r");
+    if (!file) {
+        printf("Erro ao abrir o arquivo de pontuacoes.\n");
+        return;
+    }
+
+    Leaderboard* scores = (Leaderboard*) malloc(sizeof(Leaderboard));
+    int count = 0;
+    char line[100];
+
+    while (fgets(line, sizeof(line), file)) {
+        char* namePos = strstr(line, "Nome: ");
+        char* pointsPos = strstr(line, ", Pontos: ");
+        if (namePos && pointsPos) {
+            scores = (Leaderboard*) realloc(scores, (count + 1) * sizeof(Leaderboard));
+            int nameLength = pointsPos - (namePos + 6);
+            strncpy(scores[count].nome, namePos + 6, nameLength);
+            scores[count].nome[nameLength] = '\0'; // Adiciona o caractere nulo no final
+            scores[count].pontos = atoi(pointsPos + 9);
+            count++;
+        }
+    }
+
+    qsort(scores, count, sizeof(Leaderboard), compareScores);
+
+    for (int i = 0; i < count; i++) {
+        printf("Nome: %s, Pontos: %d\n", scores[i].nome, scores[i].pontos);
+    }
+
+    free(scores);
+
+    printf("Pressione Enter para voltar ao menu.\n");
+    getchar();
+    getchar(); 
 }
 
 

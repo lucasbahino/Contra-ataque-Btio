@@ -7,6 +7,7 @@
 #include <cstdlib> // para srand e rand
 #include <ctime>   // para time
 #include <string>  // para std::string
+#include <string.h>
 
 using namespace std;
 
@@ -118,7 +119,7 @@ void processarAcoes(Player* jogador, Player* computador, Gesture playerGesto, Ge
 
 
 void mostrarResultado(const Player* jogador, const Player* computador) {
-	string nome;
+	char nome[50];
 	int pontos = 9960 - (turnos * 10) + (jogador->vidas * 33);
 
 	if (jogador->vidas == 0) {
@@ -130,7 +131,7 @@ void mostrarResultado(const Player* jogador, const Player* computador) {
 		esperar(5);
 		clearScreen();
 		printf("Digite seu Nome:");
-		cin >> nome;
+		scanf("%s", nome);
 
 		salvarDados(nome, pontos);
 	}
@@ -138,6 +139,7 @@ void mostrarResultado(const Player* jogador, const Player* computador) {
 	getchar();
     getchar(); 
 }
+
 
 void runGame(Difficulty dificuldade) {
 	int jogadorVidasIniciais = 3;
