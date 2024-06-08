@@ -1,8 +1,2 @@
-Nome: Vinicius, Pontos: 9993
-Nome: vinicius, Pontos: 9993
-Nome: Vnicius, Pontos: 9993
-Nome: Giovani, Pontos: 10029
-Nome: Giovani, Pontos: 10059
-Nome: Lucas, Pontos: 10059
-Nome: Maria, Pontos: 10026
-Nome: Bia, Pontos: 9993
+
+Nome: Bia, Pontos: 909

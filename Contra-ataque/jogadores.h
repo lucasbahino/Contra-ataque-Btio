@@ -118,12 +118,13 @@ void processarAcoes(Player* jogador, Player* computador, Gesture playerGesto, Ge
 }
 
 
-void mostrarResultado(const Player* jogador, const Player* computador) {
+void mostrarResultado(const Player* jogador, const Player* computador, int pontos) {
 	char nome[50];
-	int pontos = 9960 - (turnos * 10) + (jogador->vidas * 33);
 
 	if (jogador->vidas == 0) {
-		printf("Voce perdeu!\n");
+		clearScreen();
+		printf("Voce perdeu!");
+		esperar(5);
 	}
 	else if (computador->vidas == 0) {
 		printf("Voce venceu!\n");
@@ -135,6 +136,7 @@ void mostrarResultado(const Player* jogador, const Player* computador) {
 
 		salvarDados(nome, pontos);
 	}
+	clearScreen();
 	printf("Pressione Enter para voltar ao menu.");
 	getchar();
     getchar(); 
@@ -142,9 +144,11 @@ void mostrarResultado(const Player* jogador, const Player* computador) {
 
 
 void runGame(Difficulty dificuldade) {
+	turnos = 0;
 	int jogadorVidasIniciais = 3;
 	int jogadorBalasIniciais = 0;
-
+	int pontos = 0  + (120 * dificuldade );
+    
 	int computadorVidasIniciais = 3 + dificuldade;
 	int computadorBalasIniciais = 0 + dificuldade / 2;
 
@@ -158,12 +162,16 @@ void runGame(Difficulty dificuldade) {
 
 	string input;
 	while (pJogador->vidas > 0 && pComputador->vidas > 0) {
+		turnos++;
 		clearScreen();
 		mostrarStatus(pJogador, pComputador);
 
-		printf("Digite seu comando (0: DEFESA, 1: CARREGAR, 2: ATIRAR, sair, ause): ");
+		pontos += turnos * 15 + pJogador->vidas * 33;
+		printf("\nTurno = %d", turnos);
+		printf("\nPontuacao = %d", pontos);
+		printf("\nDigite seu comando (0: DEFESA, 1: CARREGAR, 2: ATIRAR, sair, pause): ");
 		cin >> input;
-
+		
 		if (input == "sair") {
 			break;
 		}
@@ -214,7 +222,7 @@ void runGame(Difficulty dificuldade) {
 		}
 	}
 
-	mostrarResultado(pJogador, pComputador);
+	mostrarResultado(pJogador, pComputador, pontos);
 }
 
 
