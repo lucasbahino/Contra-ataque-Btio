@@ -29,5 +29,8 @@
     <ClInclude Include="pontuacao.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="imagens.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

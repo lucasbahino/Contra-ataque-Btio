@@ -131,6 +131,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="comandos.h" />
+    <ClInclude Include="imagens.h" />
     <ClInclude Include="jogadores.h" />
     <ClInclude Include="pontuacao.h" />
   </ItemGroup>
