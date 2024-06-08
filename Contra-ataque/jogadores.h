@@ -89,7 +89,7 @@ string gestureToString(Gesture gesture) {
 
 void processarAcoes(Player* jogador, Player* computador, Gesture playerGesto, Gesture computerGesto) {
     if (playerGesto == ATIRAR) {
-        jogador->municao--; // Decrementa a munição do jogador sempre que ele atira
+        jogador->municao--; // Decrementa a muniÃ§Ã£o do jogador sempre que ele atira
         if (computerGesto == CARREGAR || computerGesto == ATIRAR) {
             computador->vidas--;
             cout << "Voce acertou o computador!" << endl;
@@ -128,7 +128,7 @@ void mostrarResultado(const Player* jogador, const Player* computador) {
 		cout << "Pontuacao de " << pontos << endl;
 		esperar(5);
 		clearScreen();
-		cout << "Digite seu Nome.";
+		cout << "Digite seu Nome:";
 		cin >> nome;
 
 		salvarDados(nome, pontos);
