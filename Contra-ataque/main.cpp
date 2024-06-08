@@ -41,13 +41,16 @@ int main() {
             showInstructions();
             break;
         case 4:
+            showScores();
+            break;
+        case 5:
             cout << "Saindo do jogo..." << endl;
             break;
         default:
             cout << "Opcao invalida. Tente novamente." << endl;
             esperar(2);
         }
-    } while (choice != 4);
+    } while (choice != 5);
 
     return 0;
 }
