@@ -88,44 +88,33 @@ string gestureToString(Gesture gesture) {
 }
 
 void processarAcoes(Player* jogador, Player* computador, Gesture playerGesto, Gesture computerGesto) {
-	if (playerGesto == ATIRAR && computerGesto == CARREGAR) {
-		computador->vidas--;
-		cout << "Voce acertou o computador!" << endl;
-	}
-	else if (playerGesto == CARREGAR && computerGesto == ATIRAR) {
-		jogador->vidas--;
-		cout << "Voce foi atingido pelo computador!" << endl;
-	}
-	else if (playerGesto == ATIRAR) {
-		jogador->municao--;
-		if (computerGesto != DEFESA) {
-			computador->vidas--;
-			cout << "Voce acertou o computador!" << endl;
-		}
-		else {
-			cout << "Computador defendeu seu tiro!" << endl;
-		}
-	}
-	else if (playerGesto == CARREGAR) {
-		jogador->municao++;
-		cout << "Voce carregou sua arma!" << endl;
-	}
+    if (playerGesto == ATIRAR) {
+        jogador->municao--; // Decrementa a munição do jogador sempre que ele atira
+        if (computerGesto == CARREGAR || computerGesto == ATIRAR) {
+            computador->vidas--;
+            cout << "Voce acertou o computador!" << endl;
+        } else {
+            cout << "Computador defendeu seu tiro!" << endl;
+        }
+    } else if (playerGesto == CARREGAR) {
+        jogador->municao++;
+        cout << "Voce carregou sua arma!" << endl;
+    }
 
-	if (computerGesto == ATIRAR && computador->municao > 0) {
-		computador->municao--;
-		if (playerGesto != DEFESA) {
-			jogador->vidas--;
-			cout << "Computador acertou voce!" << endl;
-		}
-		else {
-			cout << "Voce defendeu o tiro do computador!" << endl;
-		}
-	}
-	else if (computerGesto == CARREGAR) {
-		computador->municao++;
-		cout << "Computador carregou a arma!" << endl;
-	}
+    if (computerGesto == ATIRAR && computador->municao > 0) {
+        computador->municao--;
+        if (playerGesto != DEFESA) {
+            jogador->vidas--;
+            cout << "Computador acertou voce!" << endl;
+        } else {
+            cout << "Voce defendeu o tiro do computador!" << endl;
+        }
+    } else if (computerGesto == CARREGAR) {
+        computador->municao++;
+        cout << "Computador carregou a arma!" << endl;
+    }
 }
+
 
 void mostrarResultado(const Player* jogador, const Player* computador) {
 	string nome;
