@@ -1,5 +1,10 @@
 ﻿  main.cpp
-C:\Users\55419\Documents\Games\Contra-ataque-Btio\Contra-ataque\jogadores.h(121,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\55419\Documents\Games\Contra-ataque-Btio\Contra-ataque\comandos.h(71,12): error C3861: 'getline': identifier not found
   (compiling source file 'main.cpp')
   
-  Contra-ataque.vcxproj -> C:\Users\55419\Documents\Games\Contra-ataque-Btio\Contra-ataque\x64\Debug\Contra-ataque.exe
+C:\Users\55419\Documents\Games\Contra-ataque-Btio\Contra-ataque\comandos.h(76,26): error C3861: 'stoi': identifier not found
+  (compiling source file 'main.cpp')
+  
+C:\Users\55419\Documents\Games\Contra-ataque-Btio\Contra-ataque\jogadores.h(151,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  (compiling source file 'main.cpp')
+  

@@ -38,32 +38,4 @@ bool comparar(const Leaderboard& a, const Leaderboard& b) {
 	return b.pontos < a.pontos;
 }
 
-void showPontuacao() {
-	clearScreen();
-	ifstream file("Leaderboard.txt");
-	if (file.is_open()) {
-		cout << "Leaderboard carregada.\n";
-		esperar(2);
-	}
-	else {
-		cout << "Erro ao abrir Leaderboard.\n";
-		esperar(2);
-		return;
-	}
-
-	vector<Leaderboard> lb;
-	Leaderboard temp;
-	while (file >> temp.nome >> temp.pontos) {
-		lb.push_back(temp);
-	}
-
-	sort(lb.begin(), lb.end(), comparar);
-
-	for (const auto& l : lb) {
-		cout << "Nome: " << l.nome << ", Pontos: " << l.pontos << endl;
-	}
-	esperar(2);
-	file.close();
-}
-
 #endif // PONTUACAO_H
