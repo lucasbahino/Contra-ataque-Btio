@@ -1,7 +1,7 @@
 #ifndef COMANDOS_H
 #define COMANDOS_H
 
-#include <iostream>
+#include <stdio.h>
 #include <windows.h>
 #include <fstream>
 #include <vector>
@@ -18,50 +18,51 @@ void esperar(int segundos) {
 }
 
 void showMenu() {
-    cout << "----------------------------" << endl;
-    cout << "        Jogo de Gestos      " << endl;
-    cout << "----------------------------" << endl;
-    cout << "1. Entrar no jogo" << endl;
-    cout << "2. Escolher dificuldade" << endl;
-    cout << "3. Sobre o jogo" << endl;
-    cout << "4. Ver pontuacoes" << endl;
-    cout << "5. Sair" << endl;
+    printf("----------------------------\n");
+    printf("        Jogo de Gestos      \n");
+    printf("----------------------------\n");
+    printf("1. Entrar no jogo\n");
+    printf("2. Escolher dificuldade\n");
+    printf("3. Sobre o jogo\n");
+    printf("4. Ver pontuacoes\n");
+    printf("5. Sair\n");
 }
 
 void showDifficultyMenu() {
     clearScreen();
-    cout << "----------------------------" << endl;
-    cout << "       Escolha Dificuldade   " << endl;
-    cout << "----------------------------" << endl;
-    cout << "1. Facil" << endl;
-    cout << "2. Medio" << endl;
-    cout << "3. Dificil" << endl;
+    printf("----------------------------\n");
+    printf("       Escolha Dificuldade   \n");
+    printf("----------------------------\n");
+    printf("1. Facil\n");
+    printf("2. Medio\n");
+    printf("3. Dificil\n");
 }
 
 void showInstructions() {
     clearScreen();
-    cout << "----------------------------" << endl;
-    cout << "      Instrucoes do Jogo    " << endl;
-    cout << "----------------------------" << endl;
-    cout << "1. Cruzar os bracos sobre o peito: DEFESA" << endl;
-    cout << "2. Colocar as maos para cima e mover os dedos: CARREGAR" << endl;
-    cout << "3. Apontar as maos em formato de arma: ATIRAR" << endl;
-    cout << "Perde quem estiver carregando a arma quando o outro estiver atirando." << endl;
-    cout << "Cada jogador tem 3 vidas e municao." << endl;
-    cout << "Pressione Enter para voltar ao menu.";
-    cin.ignore();
-    cin.get();
+    printf("----------------------------\n");
+    printf("      Instrucoes do Jogo    \n");
+    printf("----------------------------\n");
+    printf("1. Cruzar os bracos sobre o peito: DEFESA\n");
+    printf("2. Colocar as maos para cima e mover os dedos: CARREGAR\n");
+    printf("3. Apontar as maos em formato de arma: ATIRAR\n");
+    printf("Perde quem estiver carregando a arma quando o outro estiver atirando.\n");
+    printf("Cada jogador tem 3 vidas e municao.\n");
+    printf("Pressione Enter para voltar ao menu.\n");
+    getchar(); 
+    getchar(); 
+
 }
 
 void showScores() {
     clearScreen();
-    cout << "----------------------------" << endl;
-    cout << "        Pontuacoes          " << endl;
-    cout << "----------------------------" << endl;
+    printf("----------------------------\n");
+    printf("        Pontuacoes          \n");
+    printf("----------------------------\n");
 
     ifstream file("Leaderboard.txt");
     if (!file) {
-        cout << "Erro ao abrir o arquivo de pontuacoes." << endl;
+        printf("Erro ao abrir o arquivo de pontuacoes.\n");
         return;
     }
 
@@ -83,12 +84,12 @@ void showScores() {
     });
 
     for (const auto& score : scores) {
-        cout << "Nome: " << score.first << ", Pontos: " << score.second << endl;
+        printf("Nome: %s, Pontos: %d\n", score.first.c_str(), score.second);
     }
 
-    cout << "Pressione Enter para voltar ao menu.";
-    cin.ignore();
-    cin.get();
+    printf("Pressione Enter para voltar ao menu.\n");
+    getchar();
+    getchar(); 
 }
 
 #endif // COMANDOS_H

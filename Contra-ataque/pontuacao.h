@@ -2,6 +2,7 @@
 #define PONTUACAO_H
 
 #include "comandos.h"
+#include <stdio.h>
 #include <fstream>
 #include <string>
 #include <vector>
@@ -21,21 +22,22 @@ void salvarDados(string nome, int pontos) {
 
 	ofstream file("Leaderboard.txt", std::ios::app);
 	if (file.is_open()) {
-		cout << "Leaderboard carregada.\n";
+		printf("Leaderboard carregada.\n");
 		esperar(2);
 	}
 	else {
-		cout << "Erro ao abrir Leaderboard.\n";
+		printf("Erro ao abrir Leaderboard.\n");
 		esperar(2);
 		return;
 	}
 
-	file << "Nome: " << lb.nome << ", Pontos: " << lb.pontos << "\n";
+	file << "\n" <<"Nome: " << lb.nome << ", Pontos: " << lb.pontos;
 	file.close();
 }
 
 bool comparar(const Leaderboard& a, const Leaderboard& b) {
 	return b.pontos < a.pontos;
 }
+
 
 #endif // PONTUACAO_H

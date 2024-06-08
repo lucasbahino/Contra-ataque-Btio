@@ -2,6 +2,7 @@
 #define JOGADORES_H
 
 #include "pontuacao.h"
+#include <stdio.h>
 #include <iostream>
 #include <cstdlib> // para srand e rand
 #include <ctime>   // para time
@@ -27,10 +28,10 @@ struct Player {
 Gesture escolherGestoJogador(const Player* player) {
 	int escolha;
 	do {
-		cout << "Escolha seu gesto: (0: DEFESA, 1: CARREGAR, 2: ATIRAR): ";
-		cin >> escolha;
+		printf("Escolha seu gesto: (0: DEFESA, 1: CARREGAR, 2: ATIRAR): ");
+		scanf("%d", &escolha);
 		if (escolha == 2 && player->municao == 0) {
-			cout << "Voce nao tem municao para atirar. Escolha outro gesto." << endl;
+			printf("Voce nao tem municao para atirar. Escolha outro gesto.\n");
 		}
 	} while (escolha == 2 && player->municao == 0);
 	return static_cast<Gesture>(escolha);
@@ -74,8 +75,8 @@ Gesture escolherGestoComputador(const Player* computer, Difficulty difficulty) {
 
 
 void mostrarStatus(const Player* jogador, const Player* computador) {
-	cout << "Vidas do Jogador: " << jogador->vidas << " | Municao: " << jogador->municao << endl;
-	cout << "Vidas do Computador: " << computador->vidas << " | Municao: " << computador->municao << endl;
+	printf("Vidas do Jogador: %d | Municao: %d\n", jogador->vidas, jogador->municao);
+	printf("Vidas do Computador: %d | Municao: %d\n", computador->vidas, computador->municao);
 }
 
 string gestureToString(Gesture gesture) {
@@ -92,26 +93,26 @@ void processarAcoes(Player* jogador, Player* computador, Gesture playerGesto, Ge
         jogador->municao--; // Decrementa a munição do jogador sempre que ele atira
         if (computerGesto == CARREGAR || computerGesto == ATIRAR) {
             computador->vidas--;
-            cout << "Voce acertou o computador!" << endl;
+            printf("Voce acertou o computador!\n");
         } else {
-            cout << "Computador defendeu seu tiro!" << endl;
+            printf("Computador defendeu seu tiro!\n");
         }
     } else if (playerGesto == CARREGAR) {
         jogador->municao++;
-        cout << "Voce carregou sua arma!" << endl;
+        printf("Voce carregou sua arma!\n");
     }
 
     if (computerGesto == ATIRAR && computador->municao > 0) {
         computador->municao--;
         if (playerGesto != DEFESA) {
             jogador->vidas--;
-            cout << "Computador acertou voce!" << endl;
+            printf("Computador acertou voce!\n");
         } else {
-            cout << "Voce defendeu o tiro do computador!" << endl;
+            printf("Voce defendeu o tiro do computador!\n");
         }
     } else if (computerGesto == CARREGAR) {
         computador->municao++;
-        cout << "Computador carregou a arma!" << endl;
+        printf("Computador carregou a arma!\n");
     }
 }
 
@@ -121,21 +122,21 @@ void mostrarResultado(const Player* jogador, const Player* computador) {
 	int pontos = 9960 - (turnos * 10) + (jogador->vidas * 33);
 
 	if (jogador->vidas == 0) {
-		cout << "Voce perdeu!" << endl;
+		printf("Voce perdeu!\n");
 	}
 	else if (computador->vidas == 0) {
-		cout << "Voce venceu!" << endl;
-		cout << "Pontuacao de " << pontos << endl;
+		printf("Voce venceu!\n");
+		printf("Pontuacao de %d\n", pontos);
 		esperar(5);
 		clearScreen();
-		cout << "Digite seu Nome:";
+		printf("Digite seu Nome:");
 		cin >> nome;
 
 		salvarDados(nome, pontos);
 	}
-	cout << "Pressione Enter para voltar ao menu.";
-	cin.ignore();
-	cin.get();
+	printf("Pressione Enter para voltar ao menu.");
+	getchar();
+    getchar(); 
 }
 
 void runGame(Difficulty dificuldade) {
@@ -158,7 +159,7 @@ void runGame(Difficulty dificuldade) {
 		clearScreen();
 		mostrarStatus(pJogador, pComputador);
 
-		cout << "Digite seu comando (0: DEFESA, 1: CARREGAR, 2: ATIRAR, sair, pause): ";
+		printf("Digite seu comando (0: DEFESA, 1: CARREGAR, 2: ATIRAR, sair, ause): ");
 		cin >> input;
 
 		if (input == "sair") {
@@ -166,7 +167,7 @@ void runGame(Difficulty dificuldade) {
 		}
 		else if (input == "pause" || input == "pausa") {
 			clearScreen();
-			cout << "Jogo pausado. Deseja continuar? (sim/nao): ";
+			printf("Jogo pausado. Deseja continuar? (sim/nao): ");
 			cin >> input;
 			if (input == "nao") {
 				break;
@@ -181,19 +182,19 @@ void runGame(Difficulty dificuldade) {
 				escolha = stoi(input);
 			}
 			catch (...) {
-				cout << "Comando invalido. Tente novamente." << endl;
+				printf("Comando invalido. Tente novamente.\n");
 				esperar(2);
 				continue;
 			}
 
 			if (escolha < 0 || escolha > 2) {
-				cout << "Comando invalido. Tente novamente." << endl;
+				printf("Comando invalido. Tente novamente.\n");
 				esperar(2);
 				continue;
 			}
 
 			if (escolha == 2 && pJogador->municao == 0) {
-				cout << "Voce nao tem municao para atirar. Escolha outro gesto." << endl;
+				printf("Voce nao tem municao para atirar. Escolha outro gesto.\n");
 				esperar(2);
 				continue;
 			}
@@ -202,8 +203,8 @@ void runGame(Difficulty dificuldade) {
 			Gesture computerGesto = escolherGestoComputador(pComputador, dificuldade);
 
 			clearScreen();
-			cout << "Voce escolheu: " << gestureToString(playerGesto) << endl;
-			cout << "Computador escolheu: " << gestureToString(computerGesto) << endl;
+			printf("Voce escolheu: %s\n", gestureToString(playerGesto).c_str());
+			printf("Computador escolheu: %s\n", gestureToString(computerGesto).c_str());
 
 			processarAcoes(pJogador, pComputador, playerGesto, computerGesto);
 
