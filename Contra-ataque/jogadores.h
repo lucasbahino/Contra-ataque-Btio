@@ -168,6 +168,9 @@ void runGame(Difficulty dificuldade) {
         mostrarStatus(pJogador, pComputador);
 
         pontos += turnos * 15 + pJogador->vidas * 33;
+        if(turnos == 1){
+        	pontos = 0;
+		}
         printf("\nTurno = %d", turnos);
         printf("\nPontuacao = %d", pontos);
         printf("\nDigite seu comando (0: DEFESA, 1: CARREGAR, 2: ATIRAR, sair, pause): ");

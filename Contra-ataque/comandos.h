@@ -6,6 +6,7 @@
 #include <fstream>
 #include <stdlib.h>
 #include <string.h>
+#include "imagens.h" 
 
 using namespace std;
 
@@ -48,8 +49,19 @@ void showInstructions() {
     printf("3. Apontar as maos em formato de arma: ATIRAR\n");
     printf("Perde quem estiver carregando a arma quando o outro estiver atirando.\n");
     printf("Cada jogador tem 3 vidas e municao.\n");
+    esperar(1);
+    printf("IMAGENS DOS GESTOS\n");
+    esperar(1);
+    printf("ATIRAR:\n");
+    exibirAtirar();
+    esperar(3);
+    printf("CARREGAR:\n");
+    exibirCarregar();
+    esperar(3);
+	printf("DEFENDER:\n");
+    exibirDefesa();
     printf("Pressione Enter para voltar ao menu.\n");
-    getchar(); 
+	getchar(); 
     getchar(); 
 
 }
