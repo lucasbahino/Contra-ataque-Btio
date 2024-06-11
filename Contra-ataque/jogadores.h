@@ -94,14 +94,14 @@ void processarAcoes(Player* jogador, Player* computador, Gesture playerGesto, Ge
         if (computerGesto == CARREGAR || computerGesto == ATIRAR) {
             computador->vidas--;
             exibirAtirar();
-        }
-        else {
+        } else if (computerGesto == DEFESA) {
             exibirDefesa();
         }
-    }
-    else if (playerGesto == CARREGAR) {
+    } else if (playerGesto == CARREGAR) {
         jogador->municao++;
         exibirCarregar();
+    } else if (playerGesto == DEFESA) {
+        exibirDefesa();
     }
 
     if (computerGesto == ATIRAR && computador->municao > 0) {
@@ -109,16 +109,17 @@ void processarAcoes(Player* jogador, Player* computador, Gesture playerGesto, Ge
         if (playerGesto != DEFESA) {
             jogador->vidas--;
             exibirAtirar();
-        }
-        else {
+        } else {
             exibirDefesa();
         }
-    }
-    else if (computerGesto == CARREGAR) {
+    } else if (computerGesto == CARREGAR) {
         computador->municao++;
         exibirCarregar();
+    } else if (computerGesto == DEFESA) {
+        exibirDefesa();
     }
 }
+
 
 void mostrarResultado(const Player* jogador, const Player* computador, int pontos) {
     char nome[50];
