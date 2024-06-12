@@ -12,9 +12,14 @@ Atirar: Você tem a chance de acertar o oponente.
 Defesa: Você se protege do ataque do adversário.
 
 Como Compilar e Executar:
+
 Certifique-se de ter um compilador C instalado em sua máquina.
-Clone este repositório, Navegue até o diretório do jogo: cd nome-do-repositorio
-Compile o código-fonte: gcc jogo.c -o jogo
+
+Clone este repositório, Navegue até o diretório do jogo: cd caminho para o git // Contra-ataque-Btio
+/Contra-ataque
+
+Compile o código-fonte: gcc jogo.c -o main.cpp
+
 Execute o jogo: ./jogo
 
 Contribuição:
