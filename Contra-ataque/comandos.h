@@ -49,21 +49,48 @@ void showInstructions() {
     printf("3. Apontar as maos em formato de arma: ATIRAR\n");
     printf("Perde quem estiver carregando a arma quando o outro estiver atirando.\n");
     printf("Cada jogador tem 3 vidas e municao.\n");
-    esperar(1);
+    esperar(5);
     printf("IMAGENS DOS GESTOS\n");
-    esperar(1);
+    esperar(3);
     printf("ATIRAR:\n");
     exibirAtirar();
-    esperar(3);
+    esperar(4);
     printf("CARREGAR:\n");
     exibirCarregar();
-    esperar(3);
+    esperar(4);
 	printf("DEFENDER:\n");
     exibirDefesa();
     printf("Pressione Enter para voltar ao menu.\n");
 	getchar(); 
     getchar(); 
 
+}
+
+
+void pressCtrlHome() {
+    INPUT inputs[4];
+
+    // Pressiona Ctrl
+    inputs[0].type = INPUT_KEYBOARD;
+    inputs[0].ki.wVk = VK_CONTROL;
+    inputs[0].ki.dwFlags = 0;
+
+    // Pressiona Home
+    inputs[1].type = INPUT_KEYBOARD;
+    inputs[1].ki.wVk = VK_HOME;
+    inputs[1].ki.dwFlags = 0;
+
+    // Libera Home
+    inputs[2].type = INPUT_KEYBOARD;
+    inputs[2].ki.wVk = VK_HOME;
+    inputs[2].ki.dwFlags = KEYEVENTF_KEYUP;
+
+    // Libera Ctrl
+    inputs[3].type = INPUT_KEYBOARD;
+    inputs[3].ki.wVk = VK_CONTROL;
+    inputs[3].ki.dwFlags = KEYEVENTF_KEYUP;
+
+    SendInput(4, inputs, sizeof(INPUT));
 }
 
 #endif // COMANDOS_H

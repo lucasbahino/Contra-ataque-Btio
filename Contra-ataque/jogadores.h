@@ -9,6 +9,7 @@
 #include <ctime>   // para time
 #include <string>  // para std::string
 #include <string.h>
+#include "comandos.h"
 
 using namespace std;
 
@@ -235,11 +236,13 @@ void runGame(Difficulty dificuldade) {
             Gesture computerGesto = escolherGestoComputador(pComputador, dificuldade);
 
             clearScreen();
-            printf("Voce escolheu: %s\n", gestureToString(playerGesto).c_str());
-            printf("Computador escolheu: %s\n", gestureToString(computerGesto).c_str());
-
+            /*printf("Voce escolheu: %s\n", gestureToString(playerGesto).c_str());
+            printf("Computador escolheu: %s\n", gestureToString(computerGesto).c_str());*/
+            
             processarAcoes(pJogador, pComputador, playerGesto, computerGesto);
-
+			
+			pressCtrlHome();
+			
             esperar(3);
         }
     }
