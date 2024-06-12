@@ -22,7 +22,7 @@ Difficulty escolherDificuldade() {
 
 int main() {
     int choice;
-    Difficulty dificuldade = MEDIO; // Default difficulty
+    Difficulty dificuldade = MEDIO; 
 
     do {
         clearScreen();

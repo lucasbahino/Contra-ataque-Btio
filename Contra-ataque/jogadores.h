@@ -47,7 +47,7 @@ Gesture escolherGestoComputador(const Player* computer, Difficulty difficulty) {
             choice = rand() % 3; // Random choice among DEFESA, CARREGAR, ATIRAR
         }
         else {
-            choice = rand() % 2; // Random choice among DEFESA, CARREGAR
+            choice = rand() % 2; 
         }
         break;
     case MEDIO:
@@ -61,14 +61,14 @@ Gesture escolherGestoComputador(const Player* computer, Difficulty difficulty) {
     case DIFICIL:
         if (computer->municao > 0) {
             if (computer->vidas < 2) {
-                choice = ATIRAR; // Aggressive if low on lives
+                choice = ATIRAR; 
             }
             else {
                 choice = rand() % 3;
             }
         }
         else {
-            choice = CARREGAR; // Prefer loading if no ammo
+            choice = CARREGAR; 
         }
         break;
     }
