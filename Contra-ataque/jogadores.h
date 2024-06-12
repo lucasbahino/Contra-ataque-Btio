@@ -89,34 +89,51 @@ string gestureToString(Gesture gesture) {
 }
 
 void processarAcoes(Player* jogador, Player* computador, Gesture playerGesto, Gesture computerGesto) {
+    // Exibir a ação do jogador
+    printf("Acao do jogador: ");
+    switch (playerGesto) {
+        case ATIRAR:
+            exibirAtirar();
+            break;
+        case CARREGAR:
+            exibirCarregar();
+            break;
+        case DEFESA:
+            exibirDefesa();
+            break;
+    }
+
+    // Exibir a ação do computador
+    printf("Acao do computador: ");
+    switch (computerGesto) {
+        case ATIRAR:
+            exibirAtirar();
+            break;
+        case CARREGAR:
+            exibirCarregar();
+            break;
+        case DEFESA:
+            exibirDefesa();
+            break;
+    }
+
+    // Atualizar o estado do jogo
     if (playerGesto == ATIRAR) {
-        jogador->municao--; // Decrementa a munição do jogador sempre que ele atira
+        jogador->municao--;
         if (computerGesto == CARREGAR || computerGesto == ATIRAR) {
             computador->vidas--;
-            exibirAtirar();
-        } else if (computerGesto == DEFESA) {
-            exibirDefesa();
         }
     } else if (playerGesto == CARREGAR) {
         jogador->municao++;
-        exibirCarregar();
-    } else if (playerGesto == DEFESA) {
-        exibirDefesa();
     }
 
     if (computerGesto == ATIRAR && computador->municao > 0) {
         computador->municao--;
         if (playerGesto != DEFESA) {
             jogador->vidas--;
-            exibirAtirar();
-        } else {
-            exibirDefesa();
         }
     } else if (computerGesto == CARREGAR) {
         computador->municao++;
-        exibirCarregar();
-    } else if (computerGesto == DEFESA) {
-        exibirDefesa();
     }
 }
 
