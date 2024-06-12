@@ -5,11 +5,6 @@
 
 void exibirAtirar() {
     printf("                                                            \n");
-    printf("                                                            \n");
-    printf("                                                            \n");
-    printf("                                                            \n");
-    printf("                                                            \n");
-    printf("                                                            \n");
     printf("                                                        ####\n");
     printf("                      ::++mm++mmmmmmmm    ::::----::::------\n");
     printf("                      ::  --          ++++mmmmmmmmMMMMMMMMMM\n");
@@ -29,10 +24,6 @@ void exibirAtirar() {
     printf("  ++##########                                              \n");
     printf("    ##########                                              \n");
     printf("        ####                                                \n");
-    printf("                                                            \n");
-    printf("                                                            \n");
-    printf("                                                            \n");
-    printf("                                                            \n");
     printf("                                                            \n");
 }
 
@@ -67,8 +58,6 @@ void exibirDefesa() {
 }
 
 void exibirCarregar() {
-    printf("                                                  \n");
-    printf("                                                  \n");
     printf("                                                  \n");
     printf("                        ####                      \n");
     printf("                        ####      ##              \n");
