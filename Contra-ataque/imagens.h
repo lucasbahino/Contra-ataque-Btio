@@ -83,4 +83,4 @@ void exibirCarregar() {
     printf("                                                  \n");
 }
 
-#endif // IMAGENS_H
+#endif 

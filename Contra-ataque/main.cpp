@@ -32,7 +32,7 @@ int main() {
 
         switch (choice) {
         case 1:
-            runGame(dificuldade); // Passar a dificuldade escolhida
+            runGame(dificuldade); 
             break;
         case 2:
             dificuldade = escolherDificuldade();

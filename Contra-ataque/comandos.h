@@ -70,22 +70,22 @@ void showInstructions() {
 void pressCtrlHome() {
     INPUT inputs[4];
 
-    // Pressiona Ctrl
+
     inputs[0].type = INPUT_KEYBOARD;
     inputs[0].ki.wVk = VK_CONTROL;
     inputs[0].ki.dwFlags = 0;
 
-    // Pressiona Home
+    
     inputs[1].type = INPUT_KEYBOARD;
     inputs[1].ki.wVk = VK_HOME;
     inputs[1].ki.dwFlags = 0;
 
-    // Libera Home
+
     inputs[2].type = INPUT_KEYBOARD;
     inputs[2].ki.wVk = VK_HOME;
     inputs[2].ki.dwFlags = KEYEVENTF_KEYUP;
 
-    // Libera Ctrl
+    
     inputs[3].type = INPUT_KEYBOARD;
     inputs[3].ki.wVk = VK_CONTROL;
     inputs[3].ki.dwFlags = KEYEVENTF_KEYUP;
@@ -93,4 +93,4 @@ void pressCtrlHome() {
     SendInput(4, inputs, sizeof(INPUT));
 }
 
-#endif // COMANDOS_H
+#endif

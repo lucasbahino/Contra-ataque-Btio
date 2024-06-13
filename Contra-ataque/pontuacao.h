@@ -34,7 +34,7 @@ void salvarDados(char* nome, int pontos) {
 int compareScores(const void* a, const void* b) {
     Leaderboard* lbA = (Leaderboard*) a;
     Leaderboard* lbB = (Leaderboard*) b;
-    return lbB->pontos - lbA->pontos; // Ordenar do maior para o menor
+    return lbB->pontos - lbA->pontos; 
 }
 
 void showScores() {
@@ -60,7 +60,7 @@ void showScores() {
             scores = (Leaderboard*) realloc(scores, (count + 1) * sizeof(Leaderboard));
             int nameLength = pointsPos - (namePos + 6);
             strncpy(scores[count].nome, namePos + 6, nameLength);
-            scores[count].nome[nameLength] = '\0'; // Adiciona o caractere nulo no final
+            scores[count].nome[nameLength] = '\0'; 
             scores[count].pontos = atoi(pointsPos + 9);
             count++;
         }
@@ -80,4 +80,4 @@ void showScores() {
 }
 
 
-#endif // PONTUACAO_H
+#endif 

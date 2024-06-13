@@ -2,12 +2,12 @@
 #define JOGADORES_H
 
 #include "pontuacao.h"
-#include "imagens.h" // Incluindo o novo cabeçalho com as imagens
+#include "imagens.h" 
 #include <stdio.h>
 #include <iostream>
-#include <cstdlib> // para srand e rand
-#include <ctime>   // para time
-#include <string>  // para std::string
+#include <cstdlib> 
+#include <ctime>   
+#include <string>  
 #include <string.h>
 #include "comandos.h"
 
@@ -44,7 +44,7 @@ Gesture escolherGestoComputador(const Player* computer, Difficulty difficulty) {
     switch (difficulty) {
     case FACIL:
         if (computer->municao > 0) {
-            choice = rand() % 3; // Random choice among DEFESA, CARREGAR, ATIRAR
+            choice = rand() % 3; 
         }
         else {
             choice = rand() % 2; 
@@ -90,7 +90,7 @@ string gestureToString(Gesture gesture) {
 }
 
 void processarAcoes(Player* jogador, Player* computador, Gesture playerGesto, Gesture computerGesto) {
-    // Exibir a ação do jogador
+    
     printf("Acao do jogador: ");
     switch (playerGesto) {
         case ATIRAR:
@@ -104,7 +104,7 @@ void processarAcoes(Player* jogador, Player* computador, Gesture playerGesto, Ge
             break;
     }
 
-    // Exibir a ação do computador
+    
     printf("Acao do computador: ");
     switch (computerGesto) {
         case ATIRAR:
@@ -118,7 +118,7 @@ void processarAcoes(Player* jogador, Player* computador, Gesture playerGesto, Ge
             break;
     }
 
-    // Atualizar o estado do jogo
+  
     if (playerGesto == ATIRAR) {
         jogador->municao--;
         if (computerGesto == CARREGAR || computerGesto == ATIRAR) {
@@ -182,15 +182,10 @@ void runGame(Difficulty dificuldade) {
 
     string input;
     while (pJogador->vidas > 0 && pComputador->vidas > 0) {
-        turnos++;
         clearScreen();
         mostrarStatus(pJogador, pComputador);
 
-        pontos += turnos * 15 + pJogador->vidas * 33;
-        if(turnos == 1){
-        	pontos = 0;
-		}
-        printf("\nTurno = %d", turnos);
+        printf("\nTurno = %d", turnos + 1); 
         printf("\nPontuacao = %d", pontos);
         printf("\nDigite seu comando (0: DEFESA, 1: CARREGAR, 2: ATIRAR, sair, pause): ");
         cin >> input;
@@ -232,12 +227,18 @@ void runGame(Difficulty dificuldade) {
                 continue;
             }
 
+            turnos++; 
+
+            pontos += turnos * 15 + pJogador->vidas * 33; 
+            if(turnos == 1){
+                pontos = 0;
+            }
+
             Gesture playerGesto = static_cast<Gesture>(escolha);
             Gesture computerGesto = escolherGestoComputador(pComputador, dificuldade);
 
             clearScreen();
-            /*printf("Voce escolheu: %s\n", gestureToString(playerGesto).c_str());
-            printf("Computador escolheu: %s\n", gestureToString(computerGesto).c_str());*/
+           
             
             processarAcoes(pJogador, pComputador, playerGesto, computerGesto);
 			
@@ -250,4 +251,5 @@ void runGame(Difficulty dificuldade) {
     mostrarResultado(pJogador, pComputador, pontos);
 }
 
-#endif // JOGADORES_H
+
+#endif 
